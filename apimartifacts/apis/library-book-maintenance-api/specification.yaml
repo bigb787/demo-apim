@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Library Book Maintenance API
+  description: A simple API to manage library books
+  version: '1.0'
+servers:
+  - url: http://demo-apim-dev.azure-api.net/book
+  - url: https://demo-apim-dev.azure-api.net/book
+paths:
+  /books:
+    get:
+      summary: Get all books
+      description: Get all books
+      operationId: get-books
+      responses:
+        '200':
+          description: List of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+              example:
+                - id: 1
+                  title: The Great Gatsby
+                  author: F. Scott Fitzgerald
+                  status: available
+    post:
+      summary: Add a new book
+      description: Add a new book
+      operationId: post-books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+            example:
+              id: 1
+              title: The Great Gatsby
+              author: F. Scott Fitzgerald
+              status: available
+      responses:
+        '201':
+          description: Book created
+  '/books/{id}':
+    get:
+      summary: Get a book by ID
+      description: Get a book by ID
+      operationId: get-books-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Book found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+              example:
+                id: 1
+                title: The Great Gatsby
+                author: F. Scott Fitzgerald
+                status: available
+        '404':
+          description: Book not found
+    put:
+      summary: Update a book
+      description: Update a book
+      operationId: put-books-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+            example:
+              id: 1
+              title: The Great Gatsby
+              author: F. Scott Fitzgerald
+              status: available
+      responses:
+        '200':
+          description: Book updated
+    delete:
+      summary: Delete a book
+      description: Delete a book
+      operationId: delete-books-id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Book deleted
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: The Great Gatsby
+        author:
+          type: string
+          example: F. Scott Fitzgerald
+        status:
+          enum:
+            - available
+            - borrowed
+            - reserved
+          type: string
+          example: available
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
