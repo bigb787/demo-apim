@@ -1,6 +1,6 @@
 {
   "properties": {
-    "path": "book",
+    "path": "books",
     "apiRevision": "1",
     "authenticationSettings": {},
     "description": "A simple API to manage library books",
