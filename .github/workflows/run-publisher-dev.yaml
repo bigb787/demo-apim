@@ -40,12 +40,3 @@ jobs:
       API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: apimartifacts # change this to the artifacts folder
     secrets: inherit
 
-  Push-Changes-To-APIM-Prod-Without-Commit-ID:
-    if: ( github.event.inputs.COMMIT_ID_CHOICE == 'publish-all-artifacts-in-repo' )
-    needs: [get-commit, Push-Changes-To-APIM-Dev-Without-Commit-ID]
-    uses: ./.github/workflows/run-publisher-with-env.yaml
-    with:
-      API_MANAGEMENT_ENVIRONMENT: dev # change this to match the prod environment created in settings
-      CONFIGURATION_YAML_PATH: configuration.prod.yaml # make sure the file is available at the root
-      API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: apimartifacts # change this to the artifacts folder
-    secrets: inherit
