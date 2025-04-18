@@ -22,7 +22,6 @@ jobs:
   
   #Publish without Commit ID. Publishes all artifacts that reside in the artifacts forlder
   Push-Changes-To-APIM-Dev-Without-Commit-ID:
-    if: ( github.event.inputs.COMMIT_ID_CHOICE == 'publish-all-artifacts-in-repo' )
     needs: get-commit
     uses: ./.github/workflows/run-publisher-with-env.yaml
     with:
