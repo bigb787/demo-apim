@@ -25,6 +25,6 @@ jobs:
     uses: ./.github/workflows/run-publisher-with-env.yaml
     with:
       API_MANAGEMENT_ENVIRONMENT: QA # change this to match the dev environment created in settings
-      ENV: dev
+      ENV: QA
       API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: apimartifacts # change this to the artifacts folder
     secrets: inherit
