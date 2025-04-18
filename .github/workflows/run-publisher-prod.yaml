@@ -1,4 +1,4 @@
-name: Run - Publisher-dev
+name: Run - Publisher-Prod
 
 on:
   push:
