@@ -1,4 +1,4 @@
-name: Run - Extractor-dev
+name: Run - Extractor-Prod
 
 on:
   workflow_dispatch:
